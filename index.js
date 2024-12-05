@@ -1,4 +1,5 @@
 import express from 'express'
+import mongoose from "mongoose";
 import Lab5 from "./Lab5/index.js";
 import Hello from "./Hello.js"
 import cors from "cors";
@@ -9,6 +10,11 @@ import ModuleRoutes from "./Kanbas/Modules/routes.js";
 import "dotenv/config";
 import AssignmentRoutes from './Kanbas/Assignments/route.js';
 import EnrollmentRoutes from './Kanbas/Enrollments/route.js';
+import "dotenv/config";
+import UserModel from "./Kanbas/Users/model.js";
+
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb+srv://Cluster60254:12345@cluster60254.m3wpy.mongodb.net/kanbas?retryWrites=true&w=majority"
+mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express()
 app.use(
