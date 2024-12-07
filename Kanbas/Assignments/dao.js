@@ -1,29 +1,27 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 
 export function createAssignment(assignment) {
-    const newAssignment = { ...assignment, _id: Date.now().toString() };
-    Database.assignments = [...Database.assignments, newAssignment];
-    return newAssignment;
+  return model.create(assignment);
 }
 
 export function getAssignments() {
-    return Database.assignments;
+  return model.find().populate("course");
+}
+
+export function getAssignmentsForCourse(courseId) {
+  return model.find({ course: courseId });
 }
 
 export function getAssignmentById(assignmentId) {
-    return Database.assignments.find((assignment) => assignment._id === assignmentId);
+  return model.findById(assignmentId);
 }
 
 export function updateAssignment(assignmentId, assignmentUpdates) {
-    const assignment = Database.assignments.find((a) => a._id === assignmentId);
-    if (assignment) {
-        Object.assign(assignment, assignmentUpdates);
-    }
-    return assignment;
+  return model.findByIdAndUpdate(assignmentId, assignmentUpdates, {
+    new: true,
+  });
 }
 
 export function deleteAssignment(assignmentId) {
-    const { assignments } = Database;
-    Database.assignments = assignments.filter((a) => a._id !== assignmentId);
-    return { success: true };
+  return model.findByIdAndDelete(assignmentId);
 }
