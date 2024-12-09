@@ -13,6 +13,7 @@ import EnrollmentRoutes from './Kanbas/Enrollments/route.js';
 import "dotenv/config";
 import UserModel from "./Kanbas/Users/model.js";
 import QuizRoutes from './Kanbas/Quizzes/routes.js';
+import QuestionRoutes from './Kanbas/Questions/routes.js';
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb+srv://Cluster60254:12345@cluster60254.m3wpy.mongodb.net/kanbas?retryWrites=true&w=majority"
 mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -50,4 +51,5 @@ ModuleRoutes(app);
 AssignmentRoutes(app);
 EnrollmentRoutes(app);
 QuizRoutes(app);
+QuestionRoutes(app);
 app.listen(process.env.PORT || 4000)
