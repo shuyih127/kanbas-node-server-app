@@ -15,6 +15,7 @@ import UserModel from "./Kanbas/Users/model.js";
 import QuizRoutes from './Kanbas/Quizzes/routes.js';
 import QuestionRoutes from './Kanbas/Questions/routes.js';
 import facultyResposneRoutes from './Kanbas/facultyResponse/routes.js';
+import studentResponseRoutes from './Kanbas/studentQuizResponses/routes.js';
 
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb+srv://Cluster60254:12345@cluster60254.m3wpy.mongodb.net/kanbas?retryWrites=true&w=majority"
@@ -55,5 +56,6 @@ EnrollmentRoutes(app);
 QuizRoutes(app);
 QuestionRoutes(app);
 facultyResposneRoutes(app);
+studentResponseRoutes(app);
 
 app.listen(process.env.PORT || 4000)
